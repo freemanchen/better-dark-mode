@@ -9,7 +9,7 @@ html, body {
 
 .popup-body {
     padding: 20px;
-    width: 260px;
+    width: 140px;
 }
 
 .popup-body:after {
@@ -36,10 +36,6 @@ h1 {
     border: none;
     display: inline-block;
     cursor: pointer;
-}
-
-.btn:first-child {
-    margin-right: 20px;
 }
 
 .btn:focus {
