@@ -30,12 +30,16 @@ h1 {
     height: 100px;
     display: inline-block;
     font-size: 60px;
-    background: #3498DB;
+    background: #fafafa;
     border-radius: 3px;
-    box-shadow: 1px 1px 3px 3px rgba(0,0,0,.1);
+    box-shadow: 1px 1px 2px 2px rgba(0,0,0,.08);
     border: none;
     display: inline-block;
     cursor: pointer;
+}
+
+.better-dark-mode-active {
+    box-shadow: inset 1px 1px 2px 2px rgba(0,0,0,.08);
 }
 
 .btn:focus {

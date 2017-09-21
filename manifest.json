@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "FGJ",
-  "description": "Chrome extension hackathon",
+  "name": "Better Dark Mode",
+  "description": "Gives pages a better dark mode by avoiding things like full white text on full black test which let's admit, isn't much better on the eyes.",
   "version": "1.0",
 
   "browser_action": {

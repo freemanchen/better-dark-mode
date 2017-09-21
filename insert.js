@@ -1,54 +1,69 @@
+let betterDarkModeTimeOut, betterDarkModeOriginalStyles;
+//
+// function openLinkedIn() {
+//
+//     Element.prototype.remove = function() {
+//         this.parentElement.removeChild(this);
+//     }
+//
+//     if (window.location.hostname.includes("linkedin.com")) {
+//         if (document.getElementById("advocate-modal")) document.getElementById("advocate-modal").remove();
+//         document.getElementsByTagName("body")[0].classList.remove("advocate-modal-visible");
+//     }
+// }
+//
+// openLinkedIn();
 
-
-function openLinkedIn() {
-
-    Element.prototype.remove = function() {
-        this.parentElement.removeChild(this);
-    }
-
-    if (window.location.hostname.includes("linkedin.com")) {
-        if (document.getElementById("advocate-modal")) document.getElementById("advocate-modal").remove();
-        document.getElementsByTagName("body")[0].classList.remove("advocate-modal-visible");
-    }
-}
-
-openLinkedIn();
-
-function darkMode() {
-    let elements = document.getElementsByTagName("*");
-    let changeElements = [];
-    for (let i = 0; i < elements.length; i++) {
-        let el = elements[i];
-        let bgColor = window.getComputedStyle(el).backgroundColor;
-        let style = el.getAttribute("style") === null ? "" : el.getAttribute("style") + ";";
-        let changed = false;
-        if (bgColor && !el.classList.contains("been-nice-bgcolored")) {
-            style += "background-color:" + calcInverse(bgColor) + " !important;";
-            el.classList.add("been-nice-bgcolored");
-            changed = true;
+function darkMode(action) {
+    if (action === 'enable') {
+        betterDarkModeOriginalStyles = [];
+        let elements = document.getElementsByTagName("*");
+        let changeElements = [];
+        for (let i = 0; i < elements.length; i++) {
+            let el = elements[i];
+            let bgColor = window.getComputedStyle(el).backgroundColor;
+            let style = origStyle = el.getAttribute("style") === null ? "" : el.getAttribute("style") + ";";
+            let changed = false;
+            if (bgColor && !el.classList.contains("been-nice-bgcolored")) {
+                origStyle += "background-color:" + bgColor + " !important;"
+                style += "background-color:" + calcInverse(bgColor) + " !important;";
+                el.classList.add("been-nice-bgcolored");
+                changed = true;
+            }
+            let color = window.getComputedStyle(el).color;
+            if (color && !el.classList.contains("been-nice-colored")) {
+                origStyle += "color:" + color + " !important;"
+                style += "color:" + calcInverse(color) + " !important;";
+                el.classList.add("been-nice-colored");
+                changed = true;
+            }
+            let borderColor = window.getComputedStyle(el).borderColor;
+            if (borderColor && !el.classList.contains("been-nice-border-colored")) {
+                origStyle += "border-color:" + borderColor + " !important;"
+                style += "border-color:" + calcInverse(borderColor) + " !important;";
+                el.classList.add("been-nice-border-colored");
+                changed = true;
+            }
+            if (changed) {
+                changeElements.push([el, style]);
+                betterDarkModeOriginalStyles.push([el, style]);
+            }
         }
-        let color = window.getComputedStyle(el).color;
-        if (color && !el.classList.contains("been-nice-colored")) {
-            el.classList.add("been-nice-colored");
-            style += "color:" + calcInverse(color) + " !important;";
-            changed = true;
+        for (let j = 0; j < changeElements.length; j++) {
+            let pair = changeElements[j];
+            pair[0].setAttribute("style", pair[1]);
         }
-        let borderColor = window.getComputedStyle(el).borderColor;
-        if (borderColor && !el.classList.contains("been-nice-border-colored")) {
-            el.classList.add("been-nice-border-colored");
-            style += "border-color:" + calcInverse(borderColor) + " !important;";
-            changed = true;
-        }
-        if (changed) changeElements.push([el, style]);
-    }
-    for (let j = 0; j < changeElements.length; j++) {
-        let pair = changeElements[j];
-        pair[0].setAttribute("style", pair[1]);
-    }
 
-    setTimeout(function() {
-        darkMode();
-    }, 4000);
+        betterDarkModeTimeOut = setTimeout(function() {
+            darkMode();
+        }, 1000);
+    }
+    else if (action === 'disable') {
+        for (let j = 0; j < betterDarkModeOriginalStyles.length; j++) {
+            let pair = betterDarkModeOriginalStyles[j];
+            pair[0].setAttribute("style", pair[1]);
+        }
+    }
 }
 
 function calcInverse(str) {
@@ -66,5 +81,3 @@ function maxMinNum(num) {
     if (newColor > 200) newColor = 200;
     return newColor;
 }
-
-darkMode();
