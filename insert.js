@@ -1,4 +1,6 @@
-let betterDarkModeTimeOut, betterDarkModeOriginalStyles;
+let betterDarkModeTimeOut;
+let changeElements = [];
+let betterDarkModeOriginalStyles = [];
 //
 // function openLinkedIn() {
 //
@@ -14,15 +16,15 @@ let betterDarkModeTimeOut, betterDarkModeOriginalStyles;
 //
 // openLinkedIn();
 
+
 function darkMode(action) {
     if (action === 'enable') {
-        betterDarkModeOriginalStyles = [];
         let elements = document.getElementsByTagName("*");
-        let changeElements = [];
         for (let i = 0; i < elements.length; i++) {
             let el = elements[i];
             let bgColor = window.getComputedStyle(el).backgroundColor;
-            let style = origStyle = el.getAttribute("style") === null ? "" : el.getAttribute("style") + ";";
+            let style = el.getAttribute("style") === null ? "" : el.getAttribute("style") + ";";
+            let origStyle = el.getAttribute("style") === null ? "" : el.getAttribute("style") + ";";
             let changed = false;
             if (bgColor && !el.classList.contains("been-nice-bgcolored")) {
                 origStyle += "background-color:" + bgColor + " !important;"
@@ -46,7 +48,7 @@ function darkMode(action) {
             }
             if (changed) {
                 changeElements.push([el, style]);
-                betterDarkModeOriginalStyles.push([el, style]);
+                betterDarkModeOriginalStyles.push([el, origStyle]);
             }
         }
         for (let j = 0; j < changeElements.length; j++) {
@@ -81,3 +83,5 @@ function maxMinNum(num) {
     if (newColor > 200) newColor = 200;
     return newColor;
 }
+
+if (localStorage["betterDarkModeEnabled"].toString() === 'yes') darkMode('enable');
