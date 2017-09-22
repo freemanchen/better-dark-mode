@@ -10,10 +10,9 @@ html, body {
 .popup-body {
     padding: 15px;
     width: 130px;
-    background: transparent;
 }
 
-.popup-body:after {
+.button-space:after {
     content: "";
     display: table;
     clear: both;
@@ -50,4 +49,62 @@ h1 {
 
 .btn:focus {
     outline: none;
+}
+
+.better-dark-mode-settings {
+    width: 100%;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 0;
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,.04);
+  background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(255,255,255,1) 100%);
+  border-radius: 1.3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 25px;
+  background: #eaeaea;
+  cursor: pointer;
+  margin-top: -5px;
+  border: 1px solid #a3a4a5;
+  box-shadow: 0 0 1px 1px rgba(0,0,0,.05)
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+
+.better-dark-mode-settings p {
+    display: block;
+    margin: 15px 0 10px 0;
+    font-size: 10px;
+    font-weight: 700;
+    color: #888;
+}
+
+.better-dark-mode-settings p span {
+    color: #aaa;
+    font-weight: 500;
+    display: block;
+}
+
+.default-click {
+    cursor: pointer;
+}
+.default-click:hover {
+    text-decoration: underline;
 }

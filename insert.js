@@ -1,8 +1,22 @@
 let betterDarkModeTimeOut;
 let changeElements = [];
 let betterDarkModeOriginalStyles = [];
+var currentMin = localStorage["betterDarkModeMin"] || 50;
+var currentMax = localStorage["betterDarkModeMax"] || 200;
 
-function darkMode(action) {
+function darkMode(action, reset) {
+    reset = reset || false;
+    if (reset) {
+        for (let m = 0; m < betterDarkModeOriginalStyles.length; m++) {
+            let pair = betterDarkModeOriginalStyles[m];
+            pair[0].setAttribute("style", pair[1]);
+            pair[0].classList.remove('been-nice-bgcolored');
+            pair[0].classList.remove('been-nice-colored');
+            pair[0].classList.remove('been-nice-border-colored');
+        }
+        betterDarkModeOriginalStyles = [];
+        changeElements = [];
+    }
     if (action === 'enable') {
         let elements = document.getElementsByTagName("*");
         for (let i = 0; i < elements.length; i++) {
@@ -12,21 +26,18 @@ function darkMode(action) {
             let origStyle = el.getAttribute("style") === null ? "" : el.getAttribute("style") + ";";
             let changed = false;
             if (bgColor && !el.classList.contains("been-nice-bgcolored")) {
-                origStyle += "background-color:" + bgColor + " !important;"
                 style += "background-color:" + calcInverse(bgColor) + " !important;";
                 el.classList.add("been-nice-bgcolored");
                 changed = true;
             }
             let color = window.getComputedStyle(el).color;
             if (color && !el.classList.contains("been-nice-colored")) {
-                origStyle += "color:" + color + " !important;"
                 style += "color:" + calcInverse(color) + " !important;";
                 el.classList.add("been-nice-colored");
                 changed = true;
             }
             let borderColor = window.getComputedStyle(el).borderColor;
             if (borderColor && !el.classList.contains("been-nice-border-colored")) {
-                origStyle += "border-color:" + borderColor + " !important;"
                 style += "border-color:" + calcInverse(borderColor) + " !important;";
                 el.classList.add("been-nice-border-colored");
                 changed = true;
@@ -36,14 +47,18 @@ function darkMode(action) {
                 betterDarkModeOriginalStyles.push([el, origStyle]);
             }
         }
+        for (let k = 0; k < betterDarkModeOriginalStyles.length; k++) {
+            let pair = betterDarkModeOriginalStyles[k];
+            pair[0].setAttribute("style", pair[1]);
+        }
         for (let j = 0; j < changeElements.length; j++) {
             let pair = changeElements[j];
             pair[0].setAttribute("style", pair[1]);
         }
 
-        betterDarkModeTimeOut = setTimeout(function() {
-            darkMode();
-        }, 1000);
+        // betterDarkModeTimeOut = setTimeout(function() {
+        //     darkMode();
+        // }, 1000);
     }
     else if (action === 'disable') {
         for (let j = 0; j < betterDarkModeOriginalStyles.length; j++) {
@@ -64,9 +79,10 @@ function calcInverse(str) {
 
 function maxMinNum(num) {
     newColor = 255 - parseInt(num);
-    if (newColor < 50) newColor = 50;
-    if (newColor > 200) newColor = 200;
+    if (newColor < currentMin) newColor = currentMin;
+    if (newColor > currentMax) newColor = currentMax;
     return newColor;
 }
 
-if (localStorage["betterDarkModeEnabled"].toString() === 'yes') darkMode('enable');
+
+if (localStorage["betterDarkModeEnabled"] === 'yes') darkMode('enable');

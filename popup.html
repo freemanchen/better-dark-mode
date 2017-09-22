@@ -7,7 +7,16 @@
   </head>
   <body>
     <div class="popup-body">
-        <button class="btn" id="better-dark-mode" class="better-dark-mode-active"><img src="icon128.png"/></button>
+        <div class="button-space">
+            <button class="btn" id="better-dark-mode" class="better-dark-mode-active"><img src="icon128.png"/></button>
+        </div>
+
+        <div class="better-dark-mode-settings">
+            <p>Darkness Limit <span class="default-click" id="min-default">Default: 50</span><span id="min-current"></span></p>
+            <input type="range" min="0" max="255" step="5" id="min-range-input">
+            <p>Brightness Limit</span><span class="default-click" id="max-default">Default: 200</span><span id="max-current"></p>
+            <input type="range" min="0" max="255" step="5" id="max-range-input">
+        </div>
     </div>
     <script src="popup.js"></script>
   </body>
