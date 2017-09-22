@@ -3,7 +3,7 @@
 
   "name": "Better Dark Mode",
   "description": "Gives pages a better dark mode by avoiding things like full white text on full black test which isn't really much better on the eyes.",
-  "version": "1.0",
+  "version": "0.9",
 
   "browser_action": {
    "default_icon": "icon.png",
