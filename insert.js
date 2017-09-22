@@ -1,20 +1,20 @@
 let betterDarkModeTimeOut;
 let changeElements = [];
 let betterDarkModeOriginalStyles = [];
-//
-// function openLinkedIn() {
-//
-//     Element.prototype.remove = function() {
-//         this.parentElement.removeChild(this);
-//     }
-//
-//     if (window.location.hostname.includes("linkedin.com")) {
-//         if (document.getElementById("advocate-modal")) document.getElementById("advocate-modal").remove();
-//         document.getElementsByTagName("body")[0].classList.remove("advocate-modal-visible");
-//     }
-// }
-//
-// openLinkedIn();
+
+function openLinkedIn() {
+
+    Element.prototype.remove = function() {
+        this.parentElement.removeChild(this);
+    }
+    
+    if (window.location.hostname.includes("linkedin.com")) {
+        if (document.getElementById("advocate-modal")) document.getElementById("advocate-modal").remove();
+        document.getElementsByTagName("body")[0].classList.remove("advocate-modal-visible");
+    }
+}
+
+openLinkedIn();
 
 
 function darkMode(action) {
