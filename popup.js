@@ -9,7 +9,7 @@ function updateCurrentDisplays() {
 
 function disable() {
   chrome.tabs.executeScript({
-    code: 'var currentMin = ' + currentMin + '; var currentMax = ' + currentMax + ';localStorage.setItem("betterDarkModeMin",currentMin);localStorage.setItem("betterDarKModeMax",currentMax);darkMode("disable");localStorage.setItem("betterDarkModeEnabled","no");'
+    code: 'var currentMin = ' + currentMin + '; var currentMax = ' + currentMax + ';localStorage.setItem("betterDarkModeMin",currentMin);localStorage.setItem("betterDarKModeMax",currentMax);clearTimeout(betterDarkModeTimeOut);darkMode("disable");localStorage.setItem("betterDarkModeEnabled","no");'
   });
 }
 

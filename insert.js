@@ -56,11 +56,12 @@ function darkMode(action, reset) {
             pair[0].setAttribute("style", pair[1]);
         }
 
-        // betterDarkModeTimeOut = setTimeout(function() {
-        //     darkMode();
-        // }, 1000);
+        betterDarkModeTimeOut = setTimeout(function() {
+            darkMode("enable", false);
+        }, 2000);
     }
     else if (action === 'disable') {
+        clearTimeout(betterDarkModeTimeOut);
         for (let j = 0; j < betterDarkModeOriginalStyles.length; j++) {
             let pair = betterDarkModeOriginalStyles[j];
             pair[0].setAttribute("style", pair[1]);
