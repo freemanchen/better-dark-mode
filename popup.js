@@ -12,7 +12,6 @@ function enable() {
 
 document.getElementById('better-dark-mode').addEventListener('click', darkModeCheck);
 
-
 function darkModeCheck() {
     if (betterDarkModeEnabled === 'yes') {
     // if (document.getElementById('better-dark-mode').classList.contains('better-dark-mode-active')) {
