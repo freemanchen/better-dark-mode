@@ -6,4 +6,5 @@ Gives pages a better dark mode by avoiding things like full white text on full b
 - Unlike most "dark modes," Better Dark Mode reduces eye-strain by not allowing any RGB values below 50 or above 200 by default.  Darkness and brightness limits can be customized by user.
 
 # Potential updates
+- Find a way to avoid flash of non-darkened page before extension runs on page load
 - Store the active/inactive state as well as darkness/brightness limit variables Chrome-wide (currently using localStorage)

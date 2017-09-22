@@ -2,15 +2,16 @@
   "manifest_version": 2,
 
   "name": "Better Dark Mode",
+  "short_name": "Better Dark",
   "description": "Give pages a better dark mode by avoiding things like full white text on full black test which isn't really much better on the eyes.",
-  "version": "0.9",
+  "version": "0.9.1",
 
   "browser_action": {
    "default_icon": "icon.png",
    "default_popup": "popup.html"
   },
   "permissions": [
-   "activeTab", "storage", "unlimitedStorage"
+   "activeTab"
    ],
    "icons": { "128": "icon128.png" },
    "content_scripts": [
