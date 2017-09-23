@@ -57,7 +57,9 @@ function darkMode(action, reset) {
         }
 
         betterDarkModeTimeOut = setTimeout(function() {
-            darkMode("enable", false);
+            if (localStorage["betterDarkModeEnabled"] === 'yes') {
+                darkMode("enable", false);
+            }
         }, 2000);
     }
     else if (action === 'disable') {
